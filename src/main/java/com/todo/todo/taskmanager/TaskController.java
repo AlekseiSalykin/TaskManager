@@ -6,7 +6,9 @@ import javafx.scene.control.TextField;
 
 public class TaskController {
 
-    private TaskManager taskManager;
+    private final TaskManager taskManager;
+
+    private boolean isFirstMethod = true;
 
     @FXML
     private TextField title;
@@ -16,7 +18,7 @@ public class TaskController {
     @FXML
     private ListView<Task> taskListView;
 
-    public TaskController(){
+    public TaskController() {
         taskManager = TaskManager.getInstance();
     }
 
@@ -50,9 +52,21 @@ public class TaskController {
     }
 
     @FXML
-    public void changeStatus(){
-       Task selectedTask = taskListView.getSelectionModel().getSelectedItem();
-       taskManager.changeStatus(selectedTask);
-       taskListView.refresh();
+    public void changeStatus() {
+        Task selectedTask = taskListView.getSelectionModel().getSelectedItem();
+        taskManager.changeStatus(selectedTask);
+        taskListView.refresh();
+    }
+
+    @FXML
+    public void sort() {
+        if (isFirstMethod) {
+            taskManager.sortStatus();
+            isFirstMethod = false;
+        } else {
+            taskManager.sortId();
+            isFirstMethod = true;
+        }
+        taskListView.refresh();
     }
 }

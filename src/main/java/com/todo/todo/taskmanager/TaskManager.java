@@ -4,10 +4,12 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import lombok.Getter;
 
+import java.util.List;
+
 @Getter
 public class TaskManager {
     private static TaskManager instance;
-    private ObservableList<Task> tasks;
+    private final ObservableList<Task> tasks;
 
     public TaskManager() {
         tasks = FXCollections.observableArrayList();
@@ -34,6 +36,16 @@ public class TaskManager {
             boolean currentStatus = task.isStatus();
             task.setStatus(!currentStatus);
         }
+    }
+
+    public void sortStatus(){
+        List<Task> tasks = getTasks();
+        tasks.sort(new TaskStatusComparator());
+    }
+
+    public void sortId(){
+        List<Task> tasks = getTasks();
+        tasks.sort(new TaskIdComparator());
     }
 
     public ObservableList<Task> getObservableTaskList() {
