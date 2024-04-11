@@ -7,7 +7,6 @@ import lombok.Setter;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @Getter
@@ -16,7 +15,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 @NoArgsConstructor
 public class Task {
     private static AtomicInteger idGenerator = new AtomicInteger(1);
-
     private int id;
     private String title;
     private String description;
@@ -32,7 +30,7 @@ public class Task {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         String statusStr = status ? "Выполнено" : "В работе";
         String formattedDate = creationTime.format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
         String formattedTime = creationTime.format(DateTimeFormatter.ofPattern("HH:mm"));

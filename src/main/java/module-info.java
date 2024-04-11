@@ -6,6 +6,7 @@ module com.todo.todo {
     requires com.dlsc.formsfx;
     requires org.kordamp.bootstrapfx.core;
     requires static lombok;
+    requires java.sql;
 
     opens com.todo.todo to javafx.fxml;
     exports com.todo.todo;
