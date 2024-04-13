@@ -1,4 +1,5 @@
 module com.todo.todo {
+    requires javafx.graphics;
     requires javafx.controls;
     requires javafx.fxml;
 

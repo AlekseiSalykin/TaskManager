@@ -24,12 +24,8 @@ public class TaskController {
 
     @FXML
     protected void initialize() {
-        if (taskManager.getObservableTaskList() != null && !taskManager.getObservableTaskList().isEmpty()) {
-            taskListView.setItems(taskManager.getObservableTaskList());
-        } else {
-            taskListView.setAccessibleText("Список задач пуст");
-            System.out.println("Список задач пуст");
-        }
+        taskManager.loadTasksFromDatabase();
+        taskListView.setItems(taskManager.getObservableTaskList());
     }
 
     @FXML

@@ -1,26 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
-
-<VBox alignment="CENTER" spacing="20.0" style="-fx-background-color: #333333; -fx-text-fill: white;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.2-ea" fx:controller="com.todo.todo.taskmanager.TaskController">
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.todo.todo.taskmanager.TaskController"
+      style="-fx-background-color: #333333; -fx-text-fill: white;">
 
     <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
     </padding>
 
-    <Text fill="white" style="-fx-font-weight: bold; -fx-font-style: italic; -fx-font-size: 28px;" text="Just do it" />
+    <Text text="Just do it" style="-fx-font-weight: bold; -fx-font-style: italic; -fx-font-size: 28px;" fill="white"/>
 
-    <ListView fx:id="taskListView" prefHeight="600.0" prefWidth="800.0" />
+    <ListView fx:id="taskListView" prefHeight="600.0" prefWidth="800.0"/>
 
     <HBox alignment="CENTER" spacing="10.0">
-        <TextField fx:id="title" promptText="Title" style="-fx-background-color: #666666; -fx-text-fill: white;" />
-        <TextField fx:id="description" promptText="Description" style="-fx-background-color: #666666; -fx-text-fill: white;" />
-        <Button mnemonicParsing="false" onAction="#addTask" style="-fx-background-color: #009688; -fx-text-fill: white;" text="Добавить задачу" />
-        <Button mnemonicParsing="false" onAction="#deleteTask" style="-fx-background-color: #009688; -fx-text-fill: white;" text="Удалить задачу" />
-        <Button mnemonicParsing="false" onAction="#changeStatus" style="-fx-background-color: #009688; -fx-text-fill: white;" text="Изменить статус" />
-        <Button mnemonicParsing="false" onAction="#sort" style="-fx-background-color: #009688; -fx-text-fill: white;" text="Сортировка" />
+        <TextField fx:id="title" promptText="Title" style="-fx-background-color: #666666; -fx-text-fill: white;"/>
+        <TextField fx:id="description" promptText="Description"
+                   style="-fx-background-color: #666666; -fx-text-fill: white;"/>
+        <Button mnemonicParsing="false" onAction="#addTask" text="Добавить задачу"
+                style="-fx-background-color: #009688; -fx-text-fill: white;"/>
+        <Button mnemonicParsing="false" onAction="#deleteTask" text="Удалить задачу"
+                style="-fx-background-color: #009688; -fx-text-fill: white;"/>
+        <Button mnemonicParsing="false" onAction="#changeStatus" text="Изменить статус"
+                style="-fx-background-color: #009688; -fx-text-fill: white;"/>
+        <Button mnemonicParsing="false" onAction="#sort" text="Сортировка"
+                style="-fx-background-color: #009688; -fx-text-fill: white;"/>
     </HBox>
 </VBox>
