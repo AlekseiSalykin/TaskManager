@@ -3,19 +3,21 @@ package com.todo.todo.taskmanager;
 import com.todo.todo.DataBaseConnection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import lombok.Getter;
 
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
-@Getter
 public class TaskManager {
     private static TaskManager instance;
     private final ObservableList<Task> tasks;
 
     public TaskManager() {
         tasks = FXCollections.observableArrayList();
+    }
+
+    public ObservableList<Task> getTasks() {
+        return tasks;
     }
 
     public static TaskManager getInstance() {
@@ -26,7 +28,10 @@ public class TaskManager {
     }
 
     public void loadTasksFromDatabase() {
-        tasks.clear();
+        if (!tasks.isEmpty()) {
+            // Если задачи уже загружены, нет необходимости загружать их снова
+            return;
+        }
         try {
             Connection connection = DataBaseConnection.connection();
             Statement statement = connection.createStatement();
@@ -82,6 +87,17 @@ public class TaskManager {
         if (task != null) {
             boolean currentStatus = task.isStatus();
             task.setStatus(!currentStatus);
+            try {
+                Connection connection = DataBaseConnection.connection();
+                String sql = "UPDATE tasks SET status = ? WHERE id = ?";
+                PreparedStatement statement = connection.prepareStatement(sql);
+                statement.setBoolean(1, task.isStatus());
+                statement.setInt(2, task.getId());
+                statement.executeUpdate();
+                System.out.println("Статус задачи обновлен в базе данных");
+            } catch (SQLException e) {
+                System.out.println("Ошибка при обновлении статуса задачи в базе данных: " + e.getMessage());
+            }
         }
     }
 

@@ -34,7 +34,6 @@ public class TaskController {
         String descr = description.getText();
         Task task = new Task(name, descr, false);
         taskManager.addTask(task);
-        initialize();
         title.clear();
         description.clear();
     }
